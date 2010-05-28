@@ -1,0 +1,29 @@
+
+plugin_name : Newsletter
+
+newsletters : Newsletter
+newsletter : Newsletter
+edit_newsletters : Newsletter bearbeiten
+edit_newsletter_subscribers : Newsletter-Empf&auml;nger bearbeiten
+send_newsletters : Newsletter versenden
+send_newsletter : Newsletter versenden
+delete_newsletter : Newsletter l&ouml;schen
+
+newsletter_subscriber_groups : Empf&auml;ngergruppen
+newsletter_subscribers : Empf&auml;nger
+
+add_newsletter : Neuer Newsletter
+add_subscriber : Neuer Empf&auml;nger
+add_subscriber_group : Neue Empf&auml;ngergruppe
+
+public--newsletter--newsletter_name : Name
+public--newsletter--subject : Betreff
+
+public--newsletter_subscriber--forename : Vorname
+public--newsletter_subscriber--surname : Nachname
+public--newsletter_subscriber--email : E-Mail
+
+public--newsletter_subsc_group--group_name : Name der Gruppe
+
+remove_article : Artikel entfernen
+add_article : Artikel hinzuf&uuml;gen
