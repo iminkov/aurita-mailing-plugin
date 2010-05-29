@@ -15,6 +15,7 @@ newsletter_subscribers : Empf&auml;nger
 add_newsletter : Neuer Newsletter
 add_subscriber : Neuer Empf&auml;nger
 add_subscriber_group : Neue Empf&auml;ngergruppe
+subscriber_groups : Empf&auml;ngergruppen
 
 public--newsletter--newsletter_name : Name
 public--newsletter--subject : Betreff

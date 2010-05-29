@@ -15,21 +15,37 @@ module Mailing
 
     def form_groups
       [ 
-        :subscriber_group_ids, 
         Newsletter_Subscriber.email, 
         Newsletter_Subscriber.forename, 
-        Newsletter_Subscriber.surname
+        Newsletter_Subscriber.surname, 
+        :subscriber_group_ids 
       ]
     end
 
     def add
       form         = add_form()
-      group_select = Entity_Selection_List_Field.new(:name  => Newsletter_Subscriber.subscriber_group_ids, 
+      group_select = Entity_Selection_List_Field.new(:name  => :subscriber_group_ids, 
                                                      :label => tl(:subscriber_groups), 
                                                      :model => Newsletter_Subscriber_Group)
       form[:subscriber_group_ids] = group_select
 
-      Page.new(:header => tl(:add_subscriber)) { form } 
+      Page.new(:header => tl(:add_subscriber)) { decorate_form(form) } 
+    end
+
+    def update
+      instance     = load_instance()
+      form         = update_form()
+      group_select = Entity_Selection_List_Field.new(:name  => :subscriber_group_ids, 
+                                                     :label => tl(:subscriber_groups), 
+                                                     :value => instance.subscriber_group_ids, 
+                                                     :model => Newsletter_Subscriber_Group)
+      form[:subscriber_group_ids] = group_select
+
+      Page.new(:header => tl(:edit_subscriber)) { decorate_form(form) } 
+    end
+
+    def perform_update
+      super()
     end
 
     after(:perform_add, :perform_delete, :perform_update) { |controller|
