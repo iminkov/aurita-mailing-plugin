@@ -1,0 +1,39 @@
+
+    <div align="left" style="font-family: Arial,Verdana,Helvetica; width: 600px; line-height: 20px;">
+      <div style="border: 1px solid #afafaf; text-align: left; background-color: white; color: black;">
+        <div style="color: white; background-color: #afafaf; height: 50px; ">
+          <div style="padding: 8px; padding-top: 11px;">
+            <font style="font-size: 12px;" size="2" face="Arial,Verdana,Helvetica">
+              <b>
+                <%= newsletter.newsletter_name %>
+              </b>
+            </font><br/>
+            <font style="font-size: 12px;" size="2" face="Arial,Verdana,Helvetica">
+              <%= Aurita.project.project_name %>
+            </font>
+          </div>
+        </div>
+
+        <div style="padding: 8px; margin-top: 12px;">
+
+<% elements.each do |element| %>
+
+          <div class="article">
+            <font style="font-size: 12px;" size="2"><b><%= element.title %></b><br/>
+              ... 
+              <a href="http://<%= Aurita.project.host %>/aurita/Wiki::Article/<%= element.article_id %>/">
+                <font color="#787878" style="font-size: 12px;" size="2">mehr &gt;&gt;&gt;</font>
+              </a>
+            </font>
+          </div><br/>
+          <br/>
+
+<% end %>
+
+          <br/>
+          <br/>
+        </div>
+      </div>
+
+    </div>
+

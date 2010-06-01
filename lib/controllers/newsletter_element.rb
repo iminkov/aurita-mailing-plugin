@@ -1,6 +1,8 @@
 
 require('aurita/plugin_controller')
 
+Aurita.import_plugin_module :wiki, :gui, :article_select_field
+
 module Aurita
 module Plugins
 module Mailing
@@ -11,10 +13,10 @@ module Mailing
       form = model_form(:action => :perform_add_article)
 
       form.add(Aurita::GUI::Hidden_Field.new(:name => :newsletter_id, :value => param(:newsletter_id)))
-      form.add(Wiki::GUI::Article_Selection_Field.new(:name        => :article, 
-                                                      :label       => tl(:find_article), 
-                                                      :num_results => 100, 
-                                                      :id          => :article_id_selection))
+      form.add(Wiki::GUI::Article_Select_Field.new(:name        => :article, 
+                                                   :label       => tl(:find_article), 
+                                                   :num_results => 100, 
+                                                   :id          => :article_id_selection))
       form.fields = [ :article, :newsletter_id ]
 
       form = decorate_form(form)

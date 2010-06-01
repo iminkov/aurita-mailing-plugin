@@ -56,7 +56,7 @@ module Mailing
     def edit_box
       return unless Aurita.user.may(:edit_newsletter_subscribers)
 
-      box         = Box.new(:id => :newsletter_subscribers_box)
+      box         = Box.new(:id => :newsletter_subscribers_box, :class => :topic)
       box.header  = tl(:newsletter_subscribers)
       box.body    = edit_box_body
       box.toolbar = [ 
@@ -70,9 +70,11 @@ module Mailing
       entries = Newsletter_Subscriber.find(:all).sort_by(:surname, :asc).to_a
       HTML.ul.no_bullets { 
         entries.map { |n|
-          HTML.li { 
-            link_to(n, :action => :delete) { Icon.new(:delete).string } + 
-            link_to(n, :action => :update) { n.label }
+          HTML.li.entity { 
+            Context_Menu_Element.new(n) { 
+              link_to(n, :action => :delete) { Icon.new(:delete).string } + 
+              HTML.div.label { link_to(n, :action => :update) { n.label } }
+            }
           }
         }
       }

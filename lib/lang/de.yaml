@@ -14,8 +14,13 @@ newsletter_subscribers : Empf&auml;nger
 
 add_newsletter : Neuer Newsletter
 add_subscriber : Neuer Empf&auml;nger
+edit_subscriber : Empf&auml;nger bearbeiten
 add_subscriber_group : Neue Empf&auml;ngergruppe
+edit_subscriber_group : Empf&auml;ngergruppe bearbeiten
+delete_subscriber_group : Empf&auml;ngergruppe l&ouml;schen
 subscriber_groups : Empf&auml;ngergruppen
+send_to_subscriber_groups : Versenden an
+scheduled_at : Angesetzt am
 
 public--newsletter--newsletter_name : Name
 public--newsletter--subject : Betreff
@@ -28,3 +33,6 @@ public--newsletter_subsc_group--group_name : Name der Gruppe
 
 remove_article : Artikel entfernen
 add_article : Artikel hinzuf&uuml;gen
+
+delivery_schedule : Versandplan
+change_scheduled_delivery : Versandplan &auml;ndern

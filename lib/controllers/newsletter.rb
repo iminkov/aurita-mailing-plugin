@@ -39,13 +39,16 @@ module Mailing
     def edit_box
       return unless Aurita.user.may(:edit_newsletters)
 
-      box         = Box.new(:id => :newsletters_box)
+      box         = Box.new(:id => :newsletters_box, :class => :topic)
       box.header  = tl(:newsletters)
       box.body    = edit_box_body
       box.toolbar = [ 
         GUI::Toolbar_Button.new(:icon   => :add, 
                                 :action => 'Mailing::Newsletter/add', 
-                                :label  => tl(:add_newsletter)).string
+                                :label  => tl(:add_newsletter)).string, 
+        GUI::Toolbar_Button.new(:icon   => :plan, 
+                                :action => 'Mailing::Newsletter_Delivery/schedule', 
+                                :label  => tl(:delivery_schedule)).string
       ]
       box
     end
@@ -53,17 +56,19 @@ module Mailing
       entries = Newsletter.find(:all).sort_by(:newsletter_name, :asc).to_a
       HTML.ul.no_bullets { 
         entries.map { |n|
-          HTML.li { 
-            link_to(n, :action => :show, :newsletter_id => n.newsletter_id) { 
-              Icon.new(:edit_button).string 
-            } + 
-            link_to(:controller    => 'Mailing::Newsletter_Delivery', 
-                    :action        => :add, 
-                    :newsletter_id => n.newsletter_id) { 
-              Icon.new(:mailbox).string 
-            } + 
-            link_to(n, :action => :delete) { Icon.new(:delete).string } + 
-            link_to(n, :action => :update) { n.newsletter_name }
+          HTML.li.entity { 
+            Context_Menu_Element.new(n) { 
+              link_to(n, :action => :show, :newsletter_id => n.newsletter_id) { 
+                Icon.new(:edit_button).string 
+              } + 
+              link_to(:controller    => 'Mailing::Newsletter_Delivery', 
+                      :action        => :add, 
+                      :newsletter_id => n.newsletter_id) { 
+                Icon.new(:mailbox).string 
+              } + 
+              link_to(n, :action => :delete) { Icon.new(:delete).string } + 
+              link_to(n, :action => :update) { n.newsletter_name }
+            }
           }
         }
       }

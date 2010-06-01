@@ -10,6 +10,8 @@ module Mailing
     table :newsletter, :public
     primary_key :newsletter_id, :newsletter_id_seq
 
+    use_label :newsletter_name
+
     def elements(params={})
       amount = params[:amount]
       # We expect rather few newsletter elements, while 

@@ -17,10 +17,20 @@ module Mailing
       controller.redirect(:element => :newsletter_subscriber_groups_box_body, :to => :edit_box_body)
     }
 
+    def add
+      Page.new(:header => tl(:add_subscriber_group)) { super() } 
+    end
+    def update
+      Page.new(:header => tl(:edit_subscriber_group)) { super() } 
+    end
+    def delete
+      Page.new(:header => tl(:delete_subscriber_group)) { super() } 
+    end
+
     def edit_box
       return unless Aurita.user.may(:edit_newsletter_subscribers)
       
-      box         = Box.new(:id => :newsletter_subscriber_groups_box)
+      box         = Box.new(:id => :newsletter_subscriber_groups_box, :class => :topic)
       box.header  = tl(:newsletter_subscriber_groups)
       box.body    = edit_box_body
       box.toolbar = [ 
@@ -34,9 +44,11 @@ module Mailing
       entries = Newsletter_Subscriber_Group.find(:all).sort_by(:group_name, :asc).to_a
       HTML.ul.no_bullets { 
         entries.map { |n|
-          HTML.li { 
-            link_to(n, :action => :delete) { Icon.new(:delete).string } + 
-            link_to(n, :action => :update) { n.group_name }
+          HTML.li.entity { 
+            Context_Menu_Element.new(n) { 
+              link_to(n, :action => :delete) { Icon.new(:delete).string }  + 
+              link_to(n, :action => :update) { n.group_name } 
+            }
           }
         }
       }
